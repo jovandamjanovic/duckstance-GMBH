@@ -1,0 +1,12 @@
+.dc-chart text.pie-slice {
+    fill: black;
+}
+.dc-chart g.row text {
+    fill: black;
+}
+body {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}

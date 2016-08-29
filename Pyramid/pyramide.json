@@ -1,0 +1,688 @@
+[
+  [
+    {
+      "type": "bewohnende",
+      "age": 0,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 0,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 0,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 0,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 0,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 0,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 5,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 5,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 5,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 5,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 5,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 5,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 10,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 10,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 10,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 10,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 10,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 10,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 15,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 15,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 15,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 15,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 15,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 15,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 20,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 20,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 20,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 20,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 20,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 20,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 25,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 25,
+      "people": 1.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 25,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 25,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 25,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 25,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 30,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 30,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 30,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 30,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 30,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 30,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 35,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 35,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 35,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 35,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 35,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 35,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 40,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 40,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 40,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 40,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 40,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 40,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 45,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 45,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 45,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 45,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 45,
+      "people": 3.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 45,
+      "people": 3.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 50,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 50,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 50,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 50,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 50,
+      "people": 3.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 50,
+      "people": 3.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 55,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 55,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 55,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 55,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 55,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 55,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 60,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 60,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 60,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 60,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 60,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 60,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 65,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 65,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 65,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 65,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 65,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 65,
+      "people": 2.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 70,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 70,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 70,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 70,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 70,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 70,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 75,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 75,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 75,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 75,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 75,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 75,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 80,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 80,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 80,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 80,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 80,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 80,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 85,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 85,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 85,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 85,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 85,
+      "people": 1.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 85,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 90,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewohnende",
+      "age": 90,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "bewerbende",
+      "age": 90,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "bewerbende",
+      "age": 90,
+      "people": 0.0,
+      "sex": 2
+    },
+    {
+      "type": "referenz",
+      "age": 90,
+      "people": 0.0,
+      "sex": 1
+    },
+    {
+      "type": "referenz",
+      "age": 90,
+      "people": 0.0,
+      "sex": 1
+    }
+  ]
+]

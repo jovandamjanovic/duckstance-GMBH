@@ -1,0 +1,117 @@
+[
+  {
+    "type": "bewohnende",
+    "key": "A1",
+    "number": 0
+  },
+  {
+    "type": "bewohnende",
+    "key": "A3",
+    "number": 0
+  },
+  {
+    "type": "bewohnende",
+    "key": "CH",
+    "number": 2
+  },
+  {
+    "type": "bewohnende",
+    "key": "A2",
+    "number": 0
+  },
+  {
+    "type": "bewohnende",
+    "key": "unknown",
+    "number": 0
+  },
+  {
+    "type": "bewohnende",
+    "key": "N1",
+    "number": 0
+  },
+  {
+    "type": "bewohnende",
+    "key": "N2",
+    "number": 1
+  },
+  {
+    "type": "bewohnende",
+    "key": "N3",
+    "number": 0
+  },
+  {
+    "type": "bewerbende",
+    "key": "A1",
+    "number": 0
+  },
+  {
+    "type": "bewerbende",
+    "key": "A3",
+    "number": 1
+  },
+  {
+    "type": "bewerbende",
+    "key": "CH",
+    "number": 2
+  },
+  {
+    "type": "bewerbende",
+    "key": "A2",
+    "number": 0
+  },
+  {
+    "type": "bewerbende",
+    "key": "unknown",
+    "number": 0
+  },
+  {
+    "type": "bewerbende",
+    "key": "N1",
+    "number": 0
+  },
+  {
+    "type": "bewerbende",
+    "key": "N2",
+    "number": 0
+  },
+  {
+    "type": "bewerbende",
+    "key": "N3",
+    "number": 0
+  },
+  {
+    "type": "referenz",
+    "key": "A1",
+    "number": 5.0
+  },
+  {
+    "type": "referenz",
+    "key": "N3",
+    "number": 1.0
+  },
+  {
+    "type": "referenz",
+    "key": "CH",
+    "number": 112.0
+  },
+  {
+    "type": "referenz",
+    "key": "A2",
+    "number": 7.0
+  },
+  {
+    "type": "referenz",
+    "key": "N1",
+    "number": 5.0
+  },
+  {
+    "type": "referenz",
+    "key": "N2",
+    "number": 1.0
+  },
+  {
+    "type": "referenz",
+    "key": "A3",
+    "number": 3.0
+  }
+]

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>duckstance Vermietungsübersicht graph</title>
+		<script src="../lib/d3.v3.min.js" charset="utf-8"></script>
+		<script src="../lib/crossfilter.js"></script>
+		<script src="../lib/dc.min.js"></script>
+		<link rel="stylesheet" href="../lib/dc.css">
+		<link rel="stylesheet" href="style.css">
+		<style>
+			#ageWomen {
+				margin-right:-35px;
+			}
+			#ageTitle {
+				text-align: center;
+			}
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				flex-wrap: wrap;
+			}
+			#donuts {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+			}
+			#donuts div {
+				margin-left: 30px;
+				margin-right: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="age">
+            <div id="ageTitle">
+                <h3>
+    				Alter
+    			</h3>
+            </div>
+            <div id="ageGraphs">
+                <div id="ageWomen">
+                </div>
+                <div id="ageMen">
+    			</div>
+            </div>
+        </div>
+        <div id="donuts">
+			<div id="Beurteilungsstand">
+				<h3>Beurteilungsstand</h3>
+			</div>
+			<div id="Wohnungen">
+				<h3>Wohnungen</h3>
+			</div>
+			<div id="Einzelzimmer">
+				<h3>Einzelzimmer</h3>
+			</div>
+			<div id="Zusatzräume">
+				<h3>Zusatzräume</h3>
+			</div>
+			<div id="Stellräume">
+				<h3>Stellräume</h3>
+			</div>
+        </div>
+		<div id="nation">
+			<h3>
+				Nationality
+			</h3>
+		</div>
+	</body>
+        <script type="text/javascript" src="graphs.js"></script>
+</html>

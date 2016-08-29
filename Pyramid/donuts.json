@@ -1,0 +1,31 @@
+[{
+    "Beurteilungsstand": {
+        "be_progr": 1,
+        "be_neu": 2,
+        "be_eva": 0
+    }
+}, {
+    "Wohnungen": {
+        "app_ohn": 66,
+        "app_ver": 2,
+        "app_neu": 2
+    }
+}, {
+    "Einzelzimmer": {
+        "single_neu": 0,
+        "single_ver": 0,
+        "app_ohn": 0
+    }
+}, {
+    "Zusatzräume": {
+        "hob_ver": 0,
+        "hob_ohn": 0,
+        "hob_neu": 0
+    }
+}, {
+    "Stellräume": {
+        "par_neu": 0,
+        "par_ver": 0,
+        "par_ohn": 0
+    }
+}]
