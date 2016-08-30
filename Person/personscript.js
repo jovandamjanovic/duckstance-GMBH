@@ -1,5 +1,6 @@
 d3.json("person.json", function (json) {
     'use strict';
+    var colorScale = ['#719bce', '#7a51ef', '#b768e7', '#f3458a', '#f9513f', '#feba3f', '#ffdf33', '#23b20d', '#0ba368', '#28b9aa'];
     var width = window.innerWidth * 0.9;
     var timeFormat = d3.time.format.iso;
     json = json.map(function (c) {
@@ -117,6 +118,7 @@ d3.json("person.json", function (json) {
         .elasticY(true)
         .renderArea(true)
         .x(d3.time.scale().domain([minDate, maxDate]))
+        .ordinalColors(colorScale)
         .legend(dc.legend().x(50).y(10).itemHeight(13).gap(5).horizontal(true));
 
     var sexChart = dc.pieChart("#sex");
@@ -125,7 +127,13 @@ d3.json("person.json", function (json) {
         .dimension(sexDim)
         .group(sexValues)
         .innerRadius(35)
-        .colors(d3.scale.category10());
+        .ordinalColors(colorScale)
+        .legend(dc.legend().x(0).y(150).gap(5))
+        .renderLabel(false);
+
+    sexChart.on('pretransition', function (chart) {
+        chart.select("svg").attr("height", 200);
+    });
 
     var ageChart = dc.rowChart("#age");
     ageChart
@@ -133,10 +141,13 @@ d3.json("person.json", function (json) {
         .dimension(ageDim)
         .group(ageValues)
         .elasticX(true)
+        .label(function (d) {
+            return d.key.split("_").join(" - ");
+        })
         .ordering(function (d) {
             return +d.key.split("_")[0];
         })
-        .colors(d3.scale.category10());
+        .ordinalColors(colorScale);
 
     var nationChart = dc.rowChart("#nation");
     nationChart
@@ -144,7 +155,7 @@ d3.json("person.json", function (json) {
         .dimension(nationDim)
         .group(nationValues)
         .elasticX(true)
-        .colors(d3.scale.category10());
+        .ordinalColors(colorScale);
 
     var buildingChart = dc.barChart("#building");
     buildingChart
@@ -155,7 +166,7 @@ d3.json("person.json", function (json) {
         .gap(5)
         .x(d3.scale.ordinal().domain(buildingDim))
         .xUnits(dc.units.ordinal)
-        .colors(d3.scale.category10())
+        .ordinalColors(colorScale)
         .colorAccessor(function (d) {
             return d.key;
         });
@@ -169,7 +180,7 @@ d3.json("person.json", function (json) {
         .gap(5)
         .x(d3.scale.ordinal().domain(roomsDim))
         .xUnits(dc.units.ordinal)
-        .colors(d3.scale.category10())
+        .ordinalColors(colorScale)
         .colorAccessor(function (d) {
             return d.key;
         });

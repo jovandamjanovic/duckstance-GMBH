@@ -1,5 +1,6 @@
 d3.json("application.json", function (json) {
     'use strict';
+    var colorScale = ['#719bce', '#7a51ef', '#b768e7', '#f3458a', '#f9513f', '#feba3f', '#ffdf33', '#23b20d', '#0ba368', '#28b9aa'];
     var timeFormat = d3.time.format.iso;
     var width = window.innerWidth * 0.9;
     json = json.map(function (c) {
@@ -123,6 +124,7 @@ d3.json("application.json", function (json) {
         .renderArea(true)
         .elasticY(true)
         .x(d3.time.scale().domain([minDate, maxDate]))
+        .ordinalColors(colorScale)
         .legend(dc.legend().x(50).y(10).itemHeight(13).gap(5).horizontal(true));
 
     var carChart = dc.pieChart("#car");
@@ -131,7 +133,13 @@ d3.json("application.json", function (json) {
         .dimension(carDim)
         .group(carValues)
         .innerRadius(35)
-        .colors(d3.scale.category10());
+        .ordinalColors(colorScale)
+        .legend(dc.legend().x(0).y(150).gap(5))
+        .renderLabel(false);
+
+    carChart.on('pretransition', function (chart) {
+        chart.select("svg").attr("height", 200);
+    });
 
     var phaseChart = dc.rowChart("#phase");
     phaseChart
@@ -142,7 +150,7 @@ d3.json("application.json", function (json) {
         .label(function (d) {
             return d.key.split("_").join(' ');
         })
-        .colors(d3.scale.category10());
+        .ordinalColors(colorScale);
 
     var incomeChart = dc.rowChart("#income");
     incomeChart
@@ -156,7 +164,7 @@ d3.json("application.json", function (json) {
         .label(function (d) {
             return d.key.split("_").join(' - ');
         })
-        .colors(d3.scale.category10());
+        .ordinalColors(colorScale);
 
     var periodChart = dc.rowChart("#period");
     periodChart
@@ -170,7 +178,7 @@ d3.json("application.json", function (json) {
         .label(function (d) {
             return d.key.split("_").join(' - ');
         })
-        .colors(d3.scale.category10());
+        .ordinalColors(colorScale);
 
     var buildingChart = dc.barChart("#building");
     buildingChart
@@ -181,7 +189,7 @@ d3.json("application.json", function (json) {
         .gap(5)
         .x(d3.scale.ordinal().domain(buildingDim))
         .xUnits(dc.units.ordinal)
-        .colors(d3.scale.category10())
+        .ordinalColors(colorScale)
         .colorAccessor(function (d) {
             return d.key;
         });
@@ -195,7 +203,7 @@ d3.json("application.json", function (json) {
         .gap(5)
         .x(d3.scale.ordinal().domain(roomsDim))
         .xUnits(dc.units.ordinal)
-        .colors(d3.scale.category10())
+        .ordinalColors(colorScale)
         .colorAccessor(function (d) {
             return d.key;
         });

@@ -1,3 +1,5 @@
+var colorScale = ['#719bce', '#7a51ef', '#b768e7', '#f3458a', '#f9513f', '#feba3f', '#ffdf33', '#23b20d', '#0ba368', '#28b9aa'];
+
 d3.json("nationality.json", function (json) {
     'use strict';
     var chartWidth = window.innerWidth * 0.4;
@@ -28,7 +30,7 @@ d3.json("nationality.json", function (json) {
             return d.value["bewerbende"];
         })
         .useRightYAxis(true)
-        .colors("blue");
+        .colors(colorScale[0]);
 
     var bewohnende = dc.barChart(nationChart)
         .gap(chartWidth * 0.1)
@@ -37,7 +39,7 @@ d3.json("nationality.json", function (json) {
             return d.value["bewohnende"];
         })
         .useRightYAxis(true)
-        .colors("red");
+        .colors(colorScale[1]);
 
     var referenz = dc.barChart(nationChart)
         .gap(chartWidth * 0.1)
@@ -46,7 +48,7 @@ d3.json("nationality.json", function (json) {
             return d.value["referenz"];
         })
         .useRightYAxis(true)
-        .colors("green");
+        .colors(colorScale[2]);
 
     nationChart
         .width(chartWidth)
@@ -87,7 +89,7 @@ d3.json("nationality.json", function (json) {
     dc.renderAll();
 });
 
-d3.json("pyramide.json", function (json) {
+d3.json("mock_pyramid.json", function (json) {
     'use strict';
     var chartWidth = window.innerWidth * 0.4;
     var chartHeight = chartWidth;
@@ -141,7 +143,7 @@ d3.json("pyramide.json", function (json) {
             return d.value["bewerbende"];
         })
         .useRightYAxis(true)
-        .colors("blue");
+        .colors(colorScale[0]);
 
     var menBewohnende = dc.barChart(menChart)
         .gap(chartWidth * 0.0375)
@@ -150,7 +152,7 @@ d3.json("pyramide.json", function (json) {
             return d.value["bewohnende"];
         })
         .useRightYAxis(true)
-        .colors("red");
+        .colors(colorScale[1]);
 
     var menReferenz = dc.barChart(menChart)
         .gap(chartWidth * 0.0375)
@@ -159,7 +161,7 @@ d3.json("pyramide.json", function (json) {
             return d.value["referenz"];
         })
         .useRightYAxis(true)
-        .colors("green");
+        .colors(colorScale[2]);
 
     var womenBewerbende = dc.barChart(womenChart)
         .gap(chartWidth * 0.0375)
@@ -168,7 +170,7 @@ d3.json("pyramide.json", function (json) {
             return d.value["bewerbende"];
         })
         .useRightYAxis(true)
-        .colors("blue");
+        .colors(colorScale[0]);
 
     var womenBewohnende = dc.barChart(womenChart)
         .gap(chartWidth * 0.0375)
@@ -177,7 +179,7 @@ d3.json("pyramide.json", function (json) {
             return d.value["bewohnende"];
         })
         .useRightYAxis(true)
-        .colors("red");
+        .colors(colorScale[1]);
 
     var womenReferenz = dc.barChart(womenChart)
         .gap(chartWidth * 0.0375)
@@ -186,7 +188,7 @@ d3.json("pyramide.json", function (json) {
             return d.value["referenz"];
         })
         .useRightYAxis(true)
-        .colors("green");
+        .colors(colorScale[2]);
 
     menChart
         .width(chartWidth)
@@ -216,10 +218,10 @@ d3.json("pyramide.json", function (json) {
 
     menChart.on("pretransition", function (c) {
         var delta = chartWidth * 0.015;
-        var shift = chartWidth * (-0.035);
-        c.selectAll("g.sub._0").attr("transform", "translate(" + ((delta + 0.5) * 3 + shift) + ", 0)");
-        c.selectAll("g.sub._1").attr("transform", "translate(" + ((delta + 0.5) * 2 + shift) + ", 0)");
-        c.selectAll("g.sub._2").attr("transform", "translate(" + ((delta + 0.5) * 1 + shift) + ", 0)");
+        var shift = chartWidth * (-0.02);
+        c.selectAll("g.sub._0").attr("transform", "translate(" + ((delta - 2.5) * 3 + shift) + ", 0)");
+        c.selectAll("g.sub._1").attr("transform", "translate(" + ((delta - 2.5) * 2 + shift) + ", 0)");
+        c.selectAll("g.sub._2").attr("transform", "translate(" + ((delta - 2.5) * 1 + shift) + ", 0)");
         c.selectAll(".x .tick line").style("display", "none");
         c.selectAll(".x .tick text").attr("transform", function () {
             var coord = this.getBBox();
@@ -239,10 +241,10 @@ d3.json("pyramide.json", function (json) {
 
     womenChart.on("pretransition", function (c) {
         var delta = chartWidth * 0.015;
-        var shift = chartWidth * (-0.035);
-        c.selectAll("g.sub._0").attr("transform", "translate(" + ((delta + 0.5) * 3 + shift) + ", 0)");
-        c.selectAll("g.sub._1").attr("transform", "translate(" + ((delta + 0.5) * 2 + shift) + ", 0)");
-        c.selectAll("g.sub._2").attr("transform", "translate(" + ((delta + 0.5) * 1 + shift) + ", 0)");
+        var shift = chartWidth * (-0.02);
+        c.selectAll("g.sub._0").attr("transform", "translate(" + ((delta - 2.5) * 3 + shift) + ", 0)");
+        c.selectAll("g.sub._1").attr("transform", "translate(" + ((delta - 2.5) * 2 + shift) + ", 0)");
+        c.selectAll("g.sub._2").attr("transform", "translate(" + ((delta - 2.5) * 1 + shift) + ", 0)");
         c.selectAll(".x .tick").style("display", "none");
         c.selectAll("svg").style("transform", "rotate(90deg) scaleY(-1)");
         c.selectAll(".yr .tick text").style("transform", "scaleY(-1)");
@@ -287,7 +289,13 @@ d3.json("donuts.json", function (json) {
             .dimension(pieDim)
             .group(pieValues)
             .innerRadius(35)
-            .colors(d3.scale.category10());
+            .ordinalColors(colorScale)
+            .legend(dc.legend().x(0).y(150).gap(5))
+            .renderLabel(false);
+
+        pieChart.on('pretransition', function (chart) {
+            chart.select("svg").attr("height", 200);
+        });
     });
     dc.renderAll();
 });
