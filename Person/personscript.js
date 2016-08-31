@@ -22,46 +22,22 @@ d3.json("person.json", function (json) {
     var minDate = days.bottom(1)[0].date;
     var maxDate = days.top(1)[0].date;
 
-    var assignedByDate = days.group().reduceSum(function (d) {
-        if (d.line === "assigned") {
-            return 1;
-        }
-        return 0;
+    var lineValuesByDate = days.group().reduce(function (acc, cur) {
+        acc[cur.line] = (acc[cur.line] || 0) + 1
+        return acc;
+    }, function (acc, cur) {
+        acc[cur.line] = (acc[cur.line] || 0) - 1
+        return acc;
+    }, function () {
+        return {};
     });
 
-    var activeByDate = days.group().reduceSum(function (d) {
-        if (d.line === "active") {
-            return 1;
-        }
-        return 0;
+    var lineDim = data.dimension(function (d) {
+        return d.line;
     });
 
-    var inactiveByDate = days.group().reduceSum(function (d) {
-        if (d.line === "inactive") {
-            return 1;
-        }
-        return 0;
-    });
-
-    var completedByDate = days.group().reduceSum(function (d) {
-        if (d.line === "completed") {
-            return 1;
-        }
-        return 0;
-    });
-
-    var tempByDate = days.group().reduceSum(function (d) {
-        if (d.line === "temp") {
-            return 1;
-        }
-        return 0;
-    });
-
-    var newByDate = days.group().reduceSum(function (d) {
-        if (d.line === "new") {
-            return 1;
-        }
-        return 0;
+    var lineValues = lineDim.group().reduceCount(function (d) {
+        return d.value;
     });
 
     var sexDim = data.dimension(function (d) {
@@ -109,17 +85,44 @@ d3.json("person.json", function (json) {
         .turnOnControls(true)
         .width(width).height(350)
         .dimension(days)
-        .group(completedByDate, "completed")
-        .stack(assignedByDate, "assigned")
-        .stack(inactiveByDate, "inactive")
-        .stack(activeByDate, "active")
-        .stack(tempByDate, "temp")
-        .stack(newByDate, "new")
+        .group(lineValuesByDate, "completed")
+        .valueAccessor(function (d) {
+            return d.value.completed || 0;
+        })
+        .stack(lineValuesByDate, "assigned", function (d) {
+            return d.value.assigned || 0;
+        })
+        .stack(lineValuesByDate, "inactive", function (d) {
+            return d.value.inactive || 0;
+        })
+        .stack(lineValuesByDate, "active", function (d) {
+            return d.value.active || 0;
+        })
+        .stack(lineValuesByDate, "new", function (d) {
+            return d.value.new || 0;
+        })
+        .stack(lineValuesByDate, "temp", function (d) {
+            return d.value.temp || 0;
+        })
         .elasticY(true)
         .renderArea(true)
         .x(d3.time.scale().domain([minDate, maxDate]))
         .ordinalColors(colorScale)
         .legend(dc.legend().x(50).y(10).itemHeight(13).gap(5).horizontal(true));
+
+    var lineChart = dc.pieChart("#line");
+    lineChart
+        .width(150).height(150)
+        .dimension(lineDim)
+        .group(lineValues)
+        .innerRadius(35)
+        .ordinalColors(colorScale)
+        .legend(dc.legend().x(0).y(150).gap(5))
+        .renderLabel(false);
+
+    lineChart.on('pretransition', function (chart) {
+        chart.select("svg").attr("height", 250);
+    });
 
     var sexChart = dc.pieChart("#sex");
     sexChart
@@ -132,7 +135,7 @@ d3.json("person.json", function (json) {
         .renderLabel(false);
 
     sexChart.on('pretransition', function (chart) {
-        chart.select("svg").attr("height", 200);
+        chart.select("svg").attr("height", 250);
     });
 
     var ageChart = dc.rowChart("#age");

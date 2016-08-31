@@ -3,6 +3,7 @@ d3.json("apartment.json", function (json) {
     var colorScale = ['#719bce', '#7a51ef', '#b768e7', '#f3458a', '#f9513f', '#feba3f', '#ffdf33', '#23b20d', '#0ba368', '#28b9aa'];
     var timeFormat = d3.time.format.iso;
     var width = window.innerWidth * 0.9;
+
     json = json.map(function (c) {
         var reserved = {};
         Object.keys(c).forEach(function (k) {
@@ -22,40 +23,22 @@ d3.json("apartment.json", function (json) {
     var minDate = days.bottom(1)[0].date;
     var maxDate = days.top(1)[0].date;
 
-    var assignedByDate = days.group().reduceSum(function (d) {
-        if (d.line === "assigned") {
-            return 1;
-        }
-        return 0;
+    var lineValuesByDate = days.group().reduce(function (acc, cur) {
+        acc[cur.line] = (acc[cur.line] || 0) + 1
+        return acc;
+    }, function (acc, cur) {
+        acc[cur.line] = (acc[cur.line] || 0) - 1
+        return acc;
+    }, function () {
+        return {};
     });
 
-
-    var activeByDate = days.group().reduceSum(function (d) {
-        if (d.line === "active") {
-            return 1;
-        }
-        return 0;
+    var lineDim = data.dimension(function (d) {
+        return d.line;
     });
 
-    var inactiveByDate = days.group().reduceSum(function (d) {
-        if (d.line === "inactive") {
-            return 1;
-        }
-        return 0;
-    });
-
-    var reservedByDate = days.group().reduceSum(function (d) {
-        if (d.line === "reserved") {
-            return 1;
-        }
-        return 0;
-    });
-
-    var vacantByDate = days.group().reduceSum(function (d) {
-        if (d.line === "vacant") {
-            return 1;
-        }
-        return 0;
+    var lineValues = lineDim.group().reduceCount(function (d) {
+        return d.value;
     });
 
     var applicationsDim = data.dimension(function (d) {
@@ -102,17 +85,43 @@ d3.json("apartment.json", function (json) {
     personChart
         .turnOnControls(true)
         .width(width).height(350)
-        .dimension(days)
-        .group(assignedByDate, "assigned")
-        .stack(inactiveByDate, "inactive")
-        .stack(activeByDate, "active")
-        .stack(reservedByDate, "reserved")
-        .stack(vacantByDate, "vacant")
-        .elasticY(true)
+        .dimension(days).group(lineValuesByDate, "assigned")
+        .valueAccessor(function (d) {
+            return d.value.assigned || 0;
+        })
+        .stack(lineValuesByDate, "active", function (d) {
+            return d.value.active || 0;
+        })
+        .stack(lineValuesByDate, "inactive", function (d) {
+            return d.value.inactive || 0;
+        })
+        .stack(lineValuesByDate, "advertised", function (d) {
+            return d.value.advertised || 0;
+        })
+        .stack(lineValuesByDate, "reserved", function (d) {
+            return d.value.reserved || 0;
+        })
+        .stack(lineValuesByDate, "vacant", function (d) {
+            return d.value.vacant || 0;
+        }).elasticY(true)
         .renderArea(true)
         .x(d3.time.scale().domain([minDate, maxDate]))
         .ordinalColors(colorScale)
         .legend(dc.legend().x(50).y(10).itemHeight(13).gap(5).horizontal(true));
+
+    var lineChart = dc.pieChart("#line");
+    lineChart
+        .width(150).height(150)
+        .dimension(lineDim)
+        .group(lineValues)
+        .innerRadius(35)
+        .ordinalColors(colorScale)
+        .legend(dc.legend().x(0).y(150).gap(5))
+        .renderLabel(false);
+
+    lineChart.on('pretransition', function (chart) {
+        chart.select("svg").attr("height", 250);
+    });
 
     var applicationsChart = dc.pieChart("#applications");
     applicationsChart
@@ -125,7 +134,7 @@ d3.json("apartment.json", function (json) {
         .renderLabel(false);
 
     applicationsChart.on('pretransition', function (chart) {
-        chart.select("svg").attr("height", 230);
+        chart.select("svg").attr("height", 250);
     });
 
     var periodChart = dc.rowChart("#period");

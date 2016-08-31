@@ -3,6 +3,8 @@ d3.json("application.json", function (json) {
     var colorScale = ['#719bce', '#7a51ef', '#b768e7', '#f3458a', '#f9513f', '#feba3f', '#ffdf33', '#23b20d', '#0ba368', '#28b9aa'];
     var timeFormat = d3.time.format.iso;
     var width = window.innerWidth * 0.9;
+
+
     json = json.map(function (c) {
         var temp = {};
         Object.keys(c).forEach(function (k) {
@@ -15,6 +17,7 @@ d3.json("application.json", function (json) {
         return temp;
     });
 
+
     var data = crossfilter(json);
     var days = data.dimension(function (d) {
         return d.date;
@@ -22,45 +25,58 @@ d3.json("application.json", function (json) {
     var minDate = days.bottom(1)[0].date;
     var maxDate = days.top(1)[0].date;
 
-    var assignedByDate = days.group().reduceSum(function (d) {
-        var filt = ["assigned", "assigned.terminated"];
-        if (filt.indexOf(d.line) > -1) {
-            return 1;
+    var lineValuesByDate = days.group().reduce(function (acc, cur) {
+        var assigned = ["assigned", "assigned.terminated"];
+        var active = ["active", "active.evaluated", "active.in_progress", "active.needs_discussion", "active.new"];
+        var inactive = ["inactive", "inactive.denied", "inactive.double", "inactive.invalid", "inactive.recall", "inactive.withdrawn"];
+        if (assigned.indexOf(cur.line) > -1) {
+            acc["assigned"] = (acc["assigned"] || 0) + 1;
+        } else if (active.indexOf(cur.line) > -1) {
+            acc["active"] = (acc["active"] || 0) + 1;
+        } else if (inactive.indexOf(cur.line) > -1) {
+            acc["inactive"] = (acc["inactive"] || 0) + 1;
+        } else {
+            acc[cur.line] = (acc[cur.line] || 0) + 1;
         }
-        return 0;
+        return acc;
+    }, function (acc, cur) {
+        var assigned = ["assigned", "assigned.terminated"];
+        var active = ["active", "active.evaluated", "active.in_progress", "active.needs_discussion", "active.new"];
+        var inactive = ["inactive", "inactive.denied", "inactive.double", "inactive.invalid", "inactive.recall", "inactive.withdrawn"];
+        if (assigned.indexOf(cur.line) > -1) {
+            acc["assigned"] = (acc["assigned"] || 0) - 1;
+        } else if (active.indexOf(cur.line) > -1) {
+            acc["active"] = (acc["active"] || 0) - 1;
+        } else if (inactive.indexOf(cur.line) > -1) {
+            acc["inactive"] = (acc["inactive"] || 0) - 1;
+        } else {
+            acc[cur.line] = (acc[cur.line] || 0) - 1;
+        }
+        return acc;
+    }, function () {
+        return {};
     });
 
+    console.log( /*JSON.stringify(lineValuesByDate.top(Infinity)),*/ lineValuesByDate.top(Infinity).filter(function (c) {
+        return c.value.active;
+    }).length);
 
-    var activeByDate = days.group().reduceSum(function (d) {
-        var filt = ["active", "active.evaluated", "active.in_progress", "active.needs_discussion", "active.new"];
-        if (filt.indexOf(d.line) > -1) {
-            return 1;
+    var lineDim = data.dimension(function (d) {
+        var assigned = ["assigned", "assigned.terminated"];
+        var active = ["active", "active.evaluated", "active.in_progress", "active.needs_discussion", "active.new"];
+        var inactive = ["inactive", "inactive.denied", "inactive.double", "inactive.invalid", "inactive.recall", "inactive.withdrawn"];
+        if (assigned.indexOf(d.line) > -1) {
+            return "assigned";
+        } else if (active.indexOf(d.line) > -1) {
+            return "active";
+        } else if (inactive.indexOf(d.line) > -1) {
+            return "inactive";
         }
-        return 0;
+        return d.line;
     });
 
-    var inactiveByDate = days.group().reduceSum(function (d) {
-        var filt = ["inactive", "inactive.denied", "inactive.double", "inactive.invalid", "inactive.recall", "inactive.withdrawn"];
-        if (filt.indexOf(d.line) > -1) {
-            return 1;
-        }
-        return 0;
-    });
-
-    var tempByDate = days.group().reduceSum(function (d) {
-        var filt = ["temp"];
-        if (filt.indexOf(d.line) > -1) {
-            return 1;
-        }
-        return 0;
-    });
-
-    var newByDate = days.group().reduceSum(function (d) {
-        var filt = ["new"];
-        if (filt.indexOf(d.line) > -1) {
-            return 1;
-        }
-        return 0;
+    var lineValues = lineDim.group().reduceCount(function (d) {
+        return d.value;
     });
 
     var carDim = data.dimension(function (d) {
@@ -116,16 +132,47 @@ d3.json("application.json", function (json) {
         .turnOnControls(true)
         .width(width).height(350)
         .dimension(days)
-        .group(assignedByDate, "assigned")
-        .stack(inactiveByDate, "inactive")
-        .stack(activeByDate, "active")
-        .stack(tempByDate, "temp")
-        .stack(newByDate, "new")
+        .group(lineValuesByDate, "active")
+        .valueAccessor(function (d) {
+            return d.value.active || 0;
+        })
+        .stack(lineValuesByDate, "completed", function (d) {
+            return d.value.completed || 0;
+        })
+        .stack(lineValuesByDate, "evaluated", function (d) {
+            return d.value.evaluated || 0;
+        })
+        .stack(lineValuesByDate, "assigned", function (d) {
+            return d.value.assigned || 0;
+        })
+        .stack(lineValuesByDate, "inactive", function (d) {
+            return d.value.inactive || 0;
+        })
+        .stack(lineValuesByDate, "new", function (d) {
+            return d.value.new || 0;
+        })
+        .stack(lineValuesByDate, "temp", function (d) {
+            return d.value.temp || 0;
+        })
         .renderArea(true)
         .elasticY(true)
         .x(d3.time.scale().domain([minDate, maxDate]))
         .ordinalColors(colorScale)
         .legend(dc.legend().x(50).y(10).itemHeight(13).gap(5).horizontal(true));
+
+    var lineChart = dc.pieChart("#line");
+    lineChart
+        .width(150).height(150)
+        .dimension(lineDim)
+        .group(lineValues)
+        .innerRadius(35)
+        .ordinalColors(colorScale)
+        .legend(dc.legend().x(0).y(150).gap(5))
+        .renderLabel(false);
+
+    lineChart.on('pretransition', function (chart) {
+        chart.select("svg").attr("height", 250);
+    });
 
     var carChart = dc.pieChart("#car");
     carChart
@@ -138,7 +185,7 @@ d3.json("application.json", function (json) {
         .renderLabel(false);
 
     carChart.on('pretransition', function (chart) {
-        chart.select("svg").attr("height", 200);
+        chart.select("svg").attr("height", 250);
     });
 
     var phaseChart = dc.rowChart("#phase");
